@@ -104,7 +104,6 @@ class Contact extends Component {
                     id="firstname"
                     name="firstname"
                     placeholder="First Name"
-                    onChange={this.handleInputChange}
                     validators={{
                       required,
                       minLength: minLength(3),
@@ -134,7 +133,6 @@ class Contact extends Component {
                     id="lastname"
                     name="lastname"
                     placeholder="Last Name"
-                    onChange={this.handleInputChange}
                     validators={{
                       required,
                       minLength: minLength(3),
@@ -164,7 +162,6 @@ class Contact extends Component {
                     id="telnum"
                     name="telnum"
                     placeholder="Tel. number"
-                    onChange={this.handleInputChange}
                     validators={{
                       required,
                       minLength: minLength(3),
@@ -196,9 +193,9 @@ class Contact extends Component {
                     id="email"
                     name="email"
                     placeholder="Email"
-                    onChange={this.handleInputChange}
                     validators={{
-                      required, validEmail
+                      required,
+                      validEmail
                     }}
                   />
                   <Errors
@@ -206,8 +203,8 @@ class Contact extends Component {
                     model=".email"
                     show="touched"
                     messages={{
-                      required: 'Required',
-                      validEmail: 'Invalid Email Address'
+                      required: "Required",
+                      validEmail: "Invalid Email Address"
                     }}
                   />
                 </Col>

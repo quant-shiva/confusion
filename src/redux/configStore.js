@@ -1,11 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { createForms } from "react-redux-form";
 import { DISHES } from "./dishes";
 import { PROMOTIONS } from "./promotions";
 import { COMMENTS } from "./comments";
 import { LEADERS } from "./leaders";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
+import { createForms } from "react-redux-form";
 import { InitialFeedback } from "./form";
 
 export const ConfigureStore = () => {

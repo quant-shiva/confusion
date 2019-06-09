@@ -51,7 +51,7 @@ const Menu = props => {
         </div>
       </div>
     );
-  } else
+  } else {
     return (
       <div className="container">
         <div className="row">
@@ -69,6 +69,7 @@ const Menu = props => {
         <div className="row">{menu}</div>
       </div>
     );
+  }
 };
 
 export default Menu;

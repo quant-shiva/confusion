@@ -178,7 +178,7 @@ const DishdetailComponent = props => {
         </div>
       </div>
     );
-  } else if (props.dish != null)
+  } else {
     return (
       <div className="container">
         <div className="row">
@@ -205,7 +205,7 @@ const DishdetailComponent = props => {
         </div>
       </div>
     );
-  else return <div />;
+  }
 };
 
 export default DishdetailComponent;

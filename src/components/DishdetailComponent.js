@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUri";
+import { FadeTransform, Fade, Stagger } from "react-animation-components";
 
 const required = val => val && val.length;
 const maxLength = len => val => !val || val.length <= len;
@@ -115,13 +116,20 @@ class CommentForm extends Component {
 function renderDish(dish) {
   if (dish != null) {
     return (
-      <Card>
-        <CardImg top src={baseUrl + dish.image} alt={dish.name} />
-        <CardBody>
-          <CardTitle>{dish.name}</CardTitle>
-          <CardText>{dish.description}</CardText>
-        </CardBody>
-      </Card>
+      <FadeTransform
+        in
+        transformProps={{
+          exitTransform: "scale(0.5) translateY(-50%)"
+        }}
+      >
+        <Card>
+          <CardImg top src={baseUrl + dish.image} alt={dish.name} />
+          <CardBody>
+            <CardTitle>{dish.name}</CardTitle>
+            <CardText>{dish.description}</CardText>
+          </CardBody>
+        </Card>
+      </FadeTransform>
     );
   } else {
     return <div />;
@@ -142,20 +150,20 @@ function RenderComments({ comments, postComment, dishId }) {
       );
 
       return (
-        <div>
-          <ul key={comment.id} className="list-unstyled">
-            <li>{comment.comment}</li>
-            <li>
-              --{comment.author} {formattedDate}
-            </li>
-          </ul>
-        </div>
+        <Fade in>
+          <li key={comment.id} className="unstyled-list">
+            <p>{comment.comment}</p>
+            <p>
+              --{comment.author}, {formattedDate}
+            </p>
+          </li>
+        </Fade>
       );
     });
     return (
       <div>
         <h4>Comments</h4>
-        {commentList}
+        <Stagger in>{commentList}</Stagger>
         <CommentForm dishId={dishId} postComment={postComment} />
       </div>
     );

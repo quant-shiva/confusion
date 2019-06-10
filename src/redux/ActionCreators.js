@@ -201,3 +201,47 @@ export const addLeaders = dishes => ({
   payload: dishes
 });
 
+export const postFeedback = Feedback => dispatch=>{
+  const newFeedback = {
+    firstname: Feedback.firstname,
+    lastname: Feedback.lastname,
+    telnum: Feedback.telnum,
+    email: Feedback.email,
+    agree: Feedback.agree,
+    contactType: Feedback.contactType,
+    message: Feedback.message
+  };
+
+  return fetch(baseUrl + "feedback", {
+    method: "POST",
+    body: JSON.stringify(newFeedback),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    credentials: "same-origin"
+  })
+    .then(
+      response => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      error => {
+        throw error;
+      }
+    )
+    .then(response => response.json())
+    .then(response =>
+      alert("Thank you for your feedback!\n" + JSON.stringify(response))
+    )
+    .catch(error => {
+      console.log("post feedback", error.message);
+      alert("Your feedback could not be posted\nError: " + error.message);
+    });
+};
